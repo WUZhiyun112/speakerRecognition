@@ -1,111 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Code-R1 | Agent-RL Project</title>
-    <style>
-        :root { 
-            --primary: #0f172a; 
-            --accent: #3b82f6; 
-            --secondary: #64748b;
-            --bg: #f8fafc; 
-        }
-        body { font-family: 'Inter', -apple-system, sans-serif; line-height: 1.6; color: var(--primary); background: var(--bg); margin: 0; padding: 0; }
-        .container { max-width: 900px; margin: 0 auto; padding: 60px 20px; }
-        
-        header { border-bottom: 2px solid #e2e8f0; padding-bottom: 30px; margin-bottom: 40px; }
-        h1 { font-size: 2.2rem; margin-bottom: 10px; color: var(--primary); }
-        .metadata { color: var(--secondary); font-size: 0.95rem; margin-bottom: 20px; }
-        .tags { display: flex; gap: 10px; }
-        .tag { background: #e2e8f0; color: var(--primary); padding: 4px 12px; border-radius: 4px; font-size: 0.8rem; font-weight: 600; }
+# Research on Multi-speaker Dialogue Content Recognition Technology in Open Scenarios
 
-        section { background: white; padding: 30px; border-radius: 12px; border: 1px solid #e2e8f0; margin-bottom: 30px; }
-        h2 { font-size: 1.5rem; margin-top: 0; color: var(--accent); display: flex; align-items: center; }
-        h2::before { content: ""; width: 4px; height: 24px; background: var(--accent); margin-right: 12px; border-radius: 2px; }
+![Status](https://img.shields.io/badge/Status-Active-brightgreen) ![Tech](https://img.shields.io/badge/Tech-PyTorch%20%7C%20Deep%20Learning-blue) 
 
-        .progress-table { width: 100%; border-collapse: collapse; margin-top: 15px; }
-        .progress-table th { background: #f1f5f9; font-weight: 600; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.05em; }
-        .progress-table th, .progress-table td { border: 1px solid #e2e8f0; padding: 15px; text-align: left; }
-        
-        .status { padding: 4px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; }
-        .status-done { background: #dcfce7; color: #166534; }
-        .status-pending { background: #fef9c3; color: #854d0e; }
-        
-        .team-member { display: inline-block; background: #f1f5f9; padding: 2px 8px; border-radius: 4px; font-size: 0.9rem; }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <header>
-            <h1>Implementation of an Agent-RL Code Generation System</h1>
-            <div class="metadata">
-                <strong>Framework:</strong> VeRL (Versatile RL) &nbsp; | &nbsp; 
-                <strong>Codename:</strong> code-r1
-            </div>
-            <div class="tags">
-                <span class="tag">Reinforcement Learning</span>
-                <span class="tag">LLM Agents</span>
-                <span class="tag">Code Generation</span>
-                <span class="tag">Self-Correction</span>
-            </div>
-        </header>
+## Project Overview
+In open scenarios (e.g., corporate meetings, sales communications), traditional single-speaker speech recognition systems struggle to accurately distinguish and transcribe dialogue content due to alternating speakers, overlapping speech, and complex background noise. 
 
-        <section id="abstract">
-            <h2>Abstract</h2>
-            <p>This project aims to implement <strong>code-r1</strong>, an advanced agent-based reinforcement learning model specializing in code generation. By leveraging the <strong>VeRL framework</strong>, we develop a system capable of self-correction through a feedback loop involving a secure execution sandbox and a rule-based reward engine. The core objective is to move beyond static supervised fine-tuning (SFT) toward a dynamic policy that learns from execution errors and environmental feedback.</p>
-        </section>
-        <section id="focus">
-            <h2>Current Focus: Reward Design</h2>
-            <p>We are currently adapting the <strong>GRPO (Group Relative Policy Optimization)</strong> algorithm. Our focus is on designing a multi-stage reward function that penalizes syntax errors while heavily rewarding logical correctness through automated unit testing.</p>
-        </section>
-        <section id="architecture">
-            <h2>System Architecture</h2>
-            <ul>
-                <li><strong>Actor Model:</strong> Fine-tuned LLM optimized for reasoning-of-thought (CoT).</li>
-                <li><strong>Environment:</strong> Isolated Docker/Subprocess sandbox for code execution.</li>
-                <li><strong>Reward Logic:</strong> Multi-tier feedback (Syntax -> Runtime -> Unit Tests).</li>
-                <li><strong>RL Algorithm:</strong> PPO/GRPO implementation via VeRL.</li>
-            </ul>
-        </section>
+This project aims to develop an end-to-end multi-speaker dialogue content recognition system to precisely solve the core problem of **"who said what and when."** By deeply integrating Voice Activity Detection (VAD), speaker verification based on context-aware masking, and Automatic Speech Recognition (ASR), the system strives to achieve high-precision multi-speaker diarization and transcription under constrained computational resources.
 
-        <section id="timeline">
-            <h2>Weekly Progress Tracker</h2>
-            <table class="progress-table">
-                <thead>
-                    <tr>
-                        <th>Week</th>
-                        <th>Key Milestones & Deliverables</th>
-                        <th>Owner</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>W1-2</td>
-                        <td>Literature review, VeRL framework setup, and project site deployment.</td>
-                        <td>Team</td>
-                        <td><span class="status status-done">Completed</span></td>
-                    </tr>
-                    <tr>
-                        <td>W3-4</td>
-                        <td>Sandbox environment design & basic reward function implementation.</td>
-                        <td>TBD</td>
-                        <td><span class="status status-pending">In Progress</span></td>
-                    </tr>
-                    <tr>
-                        <td>W5-6</td>
-                        <td>Integration of Actor with VeRL Rollout worker.</td>
-                        <td>TBD</td>
-                        <td><span class="status">Planned</span></td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
+## Core Technologies
+This project conducts deep architectural optimization on traditional acoustic models to enhance both accuracy and efficiency:
+* **Context-Aware Masking (CAM/CAM++)**: Empowers the model to dynamically "focus on the target speaker and blur background noise," extracting highly robust speaker embeddings.
+* **Squeeze-and-Excitation (SE) Block**: Introduces a channel attention mechanism in the frontend. By capturing global context information for adaptive feature recalibration, it enhances the representation of critical acoustic features.
+* **Depthwise Separable Convolution**: Reconstructs the backend backbone network for lightweight optimization. It exponentially reduces the model's parameter count and computational overhead with minimal sacrifice to recognition performance.
 
-        <footer style="text-align: center; color: #94a3b8; font-size: 0.8rem; margin-top: 50px;">
-            &copy; 2026 code-r1 Project Team | Built with GitHub Pages
-        </footer>
-    </div>
-</body>
-</html>
+---
+
+## Project Timeline
+
+> **Current Phase**: Phase 1 (Preliminary Research & Infrastructure Setup)
+
+- [x] **2026-03-26 | Project Initiation & Proposal Submission**
+  - Officially finalized the research direction and submitted the final project proposal (Aim, Literature Review, Proposed Methodology, Milestones).
+- [x] **On or before 2026-03-25 | In-depth Literature Review**
+  - Deeply analyzed the development timeline of multi-speaker recognition technologies.
+  - Completed intensive reading and summarization of cutting-edge academic papers on **CAM/CAM++ architectures**, **SE Blocks (Attention Mechanisms)**, and **Depthwise Separable Convolutions**.
+- [ ] ** [IN PROGRESS] Deep Learning Infrastructure Setup**
+  - Currently configuring the remote GPU server environment.
+  - Deploying underlying dependencies such as PyTorch, Kaldi, and ModelScope.
+  - Preparing to fetch the VoxCeleb and CN-Celeb speech benchmark datasets.
+
+---
+
+## Expected Deliverables
+1. **End-to-End System Source Code** integrating VAD, speaker verification, ASR transcription, and punctuation restoration.
+2. **Pre-trained Model Weights** enhanced by SE Blocks and optimized by Depthwise Separable Convolutions.
+3. Comprehensive **Performance Evaluation Report** (including Accuracy, EER, minDCF, and parameter ablation studies).
+4. Final Academic **Thesis and Presentation Materials**.
+
+---
+*Maintained by [Your Name / Team Name] | 2026*
