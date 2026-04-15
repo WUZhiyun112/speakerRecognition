@@ -1,41 +1,38 @@
-# Research on Multi-speaker Dialogue Content Recognition Technology in Open Scenarios
+# Application of Multi-speaker Dialogue Content Recognition Technology in Open Scenarios
 
-![Status](https://img.shields.io/badge/Status-Active-brightgreen) ![Tech](https://img.shields.io/badge/Tech-PyTorch%20%7C%20Deep%20Learning-blue) 
+![Status](https://img.shields.io/badge/Status-Phase%202%20Active-orange) ![Category](https://img.shields.io/badge/Track-Application-red) ![Tech](https://img.shields.io/badge/Tech-PyTorch%20%7C%20ModelScope%20%7C%20VAD-blue)
 
-## Project Overview
-In open scenarios (e.g., corporate meetings, sales communications), traditional single-speaker speech recognition systems struggle to accurately distinguish and transcribe dialogue content due to alternating speakers, overlapping speech, and complex background noise. 
+## 🎯 Project Mission
+This project focuses on the practical deployment of speech technologies in **unconstrained environments** (e.g., hybrid meetings, smart offices). We aim to solve the **"Who Spoke What"** challenge by building a robust system that handles overlapping speech, background noise, and varying acoustic conditions.
 
-This project aims to develop an end-to-end multi-speaker dialogue content recognition system to precisely solve the core problem of **"who said what and when."** By deeply integrating Voice Activity Detection (VAD), speaker verification based on context-aware masking, and Automatic Speech Recognition (ASR), the system strives to achieve high-precision multi-speaker diarization and transcription under constrained computational resources.
-
-## Core Technologies
-This project conducts deep architectural optimization on traditional acoustic models to enhance both accuracy and efficiency:
-* **Context-Aware Masking (CAM/CAM++)**: Empowers the model to dynamically "focus on the target speaker and blur background noise," extracting highly robust speaker embeddings.
-* **Squeeze-and-Excitation (SE) Block**: Introduces a channel attention mechanism in the frontend. By capturing global context information for adaptive feature recalibration, it enhances the representation of critical acoustic features.
-* **Depthwise Separable Convolution**: Reconstructs the backend backbone network for lightweight optimization. It exponentially reduces the model's parameter count and computational overhead with minimal sacrifice to recognition performance.
+## 🚀 Key Technological Pillars
+* **Adaptive Feature Calibration:** Integrating **SE-Blocks** to dynamically weigh acoustic channels, ensuring the model ignores "meeting room hum" and focuses on vocal clarity.
+* **Context-Aware Speaker Embedding:** Utilizing **CAM++** architectures to capture fine-grained speaker identity even in short, rapid-fire dialogue.
+* **On-device Efficiency:** Optimizing the backbone with **Depthwise Separable Convolutions** to meet the low-latency requirements of real-time application.
 
 ---
 
-## Project Timeline
+## 📈 Milestone Tracker
 
-> **Current Phase**: Phase 1 (Preliminary Research & Infrastructure Setup)
+### ✅ Phase 1: Research & Infra (Completed)
+* **Survey:** Deep-dive into CAM++, Attention mechanisms, and lightweight CNNs.
+* **Environment:** Production-ready **PyTorch & ModelScope** setup on GPU clusters.
+* **Data Hub:** Unified pipeline for **VoxCeleb 1/2** and **CN-Celeb** datasets.
 
-- [x] **2026-03-26 | Project Initiation & Proposal Submission**
-  - Officially finalized the research direction and submitted the final project proposal (Aim, Literature Review, Proposed Methodology, Milestones).
-- [x] **On or before 2026-03-25 | In-depth Literature Review**
-  - Deeply analyzed the development timeline of multi-speaker recognition technologies.
-  - Completed intensive reading and summarization of cutting-edge academic papers on **CAM/CAM++ architectures**, **SE Blocks (Attention Mechanisms)**, and **Depthwise Separable Convolutions**.
-- [ ] ** [IN PROGRESS] Deep Learning Infrastructure Setup**
-  - Currently configuring the remote GPU server environment.
-  - Deploying underlying dependencies such as PyTorch, Kaldi, and ModelScope.
-  - Preparing to fetch the VoxCeleb and CN-Celeb speech benchmark datasets.
+### 🏗️ Phase 2: Signal Engineering & Baseline (In-Progress)
+* **[Completed] Feature Pipeline:** Developed a high-fidelity extraction tool for **80-dim Fbank** features with custom windowing.
+* **[Completed] VAD System:** Debugged and deployed a specialized **Voice Activity Detection** module to strip environmental noise from open-scenario audio.
+* **[Current] Baseline Training:** Implementing the **CAM++ speaker verification baseline** to set our performance benchmark (EER/MinDCF).
 
----
-
-## Expected Deliverables
-1. **End-to-End System Source Code** integrating VAD, speaker verification, ASR transcription, and punctuation restoration.
-2. **Pre-trained Model Weights** enhanced by SE Blocks and optimized by Depthwise Separable Convolutions.
-3. Comprehensive **Performance Evaluation Report** (including Accuracy, EER, minDCF, and parameter ablation studies).
-4. Final Academic **Thesis and Presentation Materials**.
+### 🔮 Phase 3: System Optimization & Demo (Upcoming)
+* **SE-Block Integration:** Enhancing the frontend with channel-wise attention.
+* **Application Demo:** Developing a **"Live Voice-Lock"** and **"Speaker Diarization Timeline"** to visualize real-time separation of multiple speakers.
 
 ---
-*Maintained by [Your Name / Team Name] | 2026*
+
+## 📂 Administrative Note
+> **Status:** Reclassification request to **"Application Track"** is currently pending with the Academic Affairs Office. Project development remains on schedule.
+
+---
+*Maintained by [Group of Application of Multi-speaker Dialogue Content Recognition
+Technology in Open Scenarios] | Last Updated: April 15, 2026*
