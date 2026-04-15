@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Application of Multi-speaker Dialogue Recognition</title>
+    <title>Multi-speaker Dialogue Content Recognition</title>
     <style>
         :root { 
             --primary: #0f172a; 
-            --accent: #3b82f6; 
+            --accent: #0ea5e9; 
             --secondary: #64748b;
             --bg: #f8fafc; 
         }
@@ -16,27 +16,28 @@
         
         header { border-bottom: 2px solid #e2e8f0; padding-bottom: 30px; margin-bottom: 40px; }
         h1 { font-size: 2.2rem; margin-bottom: 10px; color: var(--primary); line-height: 1.3; }
-        .metadata { color: var(--secondary); font-size: 0.95rem; margin-bottom: 20px; }
-        .tags { display: flex; gap: 10px; flex-wrap: wrap; }
-        .tag { background: #e2e8f0; color: var(--primary); padding: 4px 12px; border-radius: 4px; font-size: 0.8rem; font-weight: 600; }
+        .metadata { color: var(--secondary); font-size: 0.95rem; margin-bottom: 20px; line-height: 1.8;}
+        .tags { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 15px;}
+        .tag { background: #e0f2fe; color: #0369a1; padding: 4px 12px; border-radius: 4px; font-size: 0.8rem; font-weight: 600; }
 
-        section { background: white; padding: 30px; border-radius: 12px; border: 1px solid #e2e8f0; margin-bottom: 30px; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); }
-        h2 { font-size: 1.5rem; margin-top: 0; color: var(--accent); display: flex; align-items: center; }
+        section { background: white; padding: 30px; border-radius: 12px; border: 1px solid #e2e8f0; margin-bottom: 30px; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05); }
+        h2 { font-size: 1.5rem; margin-top: 0; color: var(--primary); display: flex; align-items: center; }
         h2::before { content: ""; width: 4px; height: 24px; background: var(--accent); margin-right: 12px; border-radius: 2px; }
         
         ul { padding-left: 20px; color: #334155; }
-        li { margin-bottom: 10px; }
+        li { margin-bottom: 12px; }
+        strong { color: var(--primary); }
 
         .progress-table { width: 100%; border-collapse: collapse; margin-top: 15px; }
         .progress-table th { background: #f1f5f9; font-weight: 600; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.05em; color: var(--secondary);}
-        .progress-table th, .progress-table td { border: 1px solid #e2e8f0; padding: 15px; text-align: left; }
+        .progress-table th, .progress-table td { border: 1px solid #e2e8f0; padding: 15px; text-align: left; font-size: 0.95rem; }
         
         .status { padding: 4px 10px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; display: inline-block;}
         .status-done { background: #dcfce7; color: #166534; }
-        .status-active { background: #ffedd5; color: #c2410c; } /* 橙色代表进行中 */
-        .status-upcoming { background: #f1f5f9; color: #475569; } /* 灰色代表未开始 */
+        .status-active { background: #ffedd5; color: #c2410c; }
+        .status-upcoming { background: #f1f5f9; color: #475569; }
         
-        .alert-box { background: #fef2f2; border-left: 4px solid #ef4444; padding: 15px; border-radius: 0 8px 8px 0; font-size: 0.95rem;}
+        .alert-box { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 15px; border-radius: 0 8px 8px 0; font-size: 0.95rem; color: #92400e;}
     </style>
 </head>
 <body>
@@ -44,55 +45,66 @@
         <header>
             <h1>Application of Multi-speaker Dialogue Content Recognition Technology in Open Scenarios</h1>
             <div class="metadata">
-                <strong>Status:</strong> Phase 2 (Active) &nbsp; | &nbsp; 
-                <strong>Category:</strong> Application Track
+                <strong>Course:</strong> COMP7705 Final Project [cite: 2] <br>
+                <strong>Mentor:</strong> Prof. TW Chim [cite: 6, 7] <br>
+                <strong>Project Team:</strong> YE Zixin (Leader) [cite: 8, 9], CAO Kainan [cite: 10, 11], WU Zhiyun [cite: 12, 13]
             </div>
             <div class="tags">
-                <span class="tag">PyTorch</span>
-                <span class="tag">ModelScope</span>
-                <span class="tag">VAD</span>
                 <span class="tag">Speaker Diarization</span>
+                <span class="tag">CAM++</span>
+                <span class="tag">Voice Activity Detection</span>
+                <span class="tag">PyTorch</span>
             </div>
         </header>
 
-        <section id="mission">
-            <h2>Project Mission</h2>
-            <p>This project focuses on the practical deployment of speech technologies in <strong>unconstrained environments</strong> (e.g., hybrid meetings, smart offices). We aim to solve the core challenge of <strong>"Who Spoke What and When"</strong> by building a robust system that handles overlapping speech, background noise, and varying acoustic conditions.</p>
-        </section>
-
-        <section id="tech">
-            <h2>Key Technological Pillars</h2>
+        <section id="aim">
+            <h2>Project Aim & Methodology</h2>
+            <p>This project aims to research and develop automatic recognition and processing technologies suitable for multi-speaker conversations in "open scenarios"[cite: 15]. The goal is to precisely answer the question of <strong>"who said what and when"</strong>[cite: 17].</p>
+            <p>Our end-to-end framework comprises four core modules[cite: 46]:</p>
             <ul>
-                <li><strong>Adaptive Feature Calibration:</strong> Integrating <strong>SE-Blocks</strong> to dynamically weigh acoustic channels, ensuring the model ignores "meeting room hum" and focuses on vocal clarity.</li>
-                <li><strong>Context-Aware Speaker Embedding:</strong> Utilizing <strong>CAM++</strong> architectures to capture fine-grained speaker identity even in short, rapid-fire dialogue.</li>
-                <li><strong>On-device Efficiency:</strong> Optimizing the backbone with <strong>Depthwise Separable Convolutions</strong> to meet the low-latency requirements of real-time applications.</li>
+                <li><strong>Speech Preprocessing:</strong> Using VAD to extract valid speech segments and remove silence[cite: 48].</li>
+                <li><strong>Speaker Diarization & Verification:</strong> Utilizing D-TDNN backbone with Context-Aware Masking (CAM++) to concentrate on target speakers and suppress noise[cite: 50].</li>
+                <li><strong>Automatic Speech Recognition (ASR):</strong> Fusing diarization outputs with ASR to generate structured "Speaker ID + Timestamp + Text" transcripts[cite: 55, 56].</li>
+                <li><strong>Dialogue Structuring:</strong> Organizing the transcribed text chronologically and grouped by individuals[cite: 57].</li>
             </ul>
         </section>
 
         <section id="timeline">
-            <h2>Milestone Tracker</h2>
+            <h2>Progress & Milestone Tracker</h2>
+            <p style="color: var(--secondary); font-size: 0.9rem; margin-bottom: 20px;">Tracking the latest updates submitted to the project mentor.</p>
+            
             <table class="progress-table">
                 <thead>
                     <tr>
-                        <th>Phase</th>
-                        <th>Key Milestones & Deliverables</th>
-                        <th>Status</th>
+                        <th width="15%">Phase</th>
+                        <th width="65%">Work Items & Deliverables</th>
+                        <th width="20%">Status</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Phase 1</td>
-                        <td><strong>Research & Infra:</strong> Deep-dive into CAM++ & SE-Blocks, PyTorch server setup, and Data Hub pipeline for VoxCeleb/CN-Celeb.</td>
+                        <td><strong>Research</strong></td>
+                        <td><strong>Literature Review & Requirements:</strong> Conducted in-depth surveys of CAM/CAM++, SE-Block attention mechanisms, and depthwise separable convolutions. Analyzed application requirements for open-scenario use cases like smart meetings.</td>
                         <td><span class="status status-done">Completed</span></td>
                     </tr>
                     <tr>
-                        <td>Phase 2</td>
-                        <td><strong>Signal Engineering:</strong> High-fidelity 80-dim Fbank pipeline, VAD optimization for noise stripping, and CAM++ Baseline deployment.</td>
+                        <td><strong>Infra & Data</strong></td>
+                        <td><strong>Environment & Dataset:</strong> Configured PyTorch and ModelScope environments. Organized VoxCeleb 1/2 and CN-Celeb benchmark datasets [cite: 59] into a unified directory structure.</td>
+                        <td><span class="status status-done">Completed</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Preprocessing</strong></td>
+                        <td><strong>Audio Pipeline & VAD:</strong> Built a pipeline to resample, frame, and extract high-dimensional Fbank/MFCC features. Debugged the VAD module to successfully remove silence and background noise.</td>
+                        <td><span class="status status-done">Completed</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Modeling</strong></td>
+                        <td><strong>CAM++ Baseline:</strong> Implementing a basic CAM++ speaker verification baseline model to provide a reference for subsequent optimization.</td>
                         <td><span class="status status-active">In Progress</span></td>
                     </tr>
                     <tr>
-                        <td>Phase 3</td>
-                        <td><strong>System Optimization:</strong> SE-Block frontend integration and development of "Live Voice-Lock" demo.</td>
+                        <td><strong>Optimization</strong></td>
+                        <td><strong>Network Refinement:</strong> Integrate SE-Block for global contextual calibration and implement Depthwise Separable Convolutions[cite: 65, 67].</td>
                         <td><span class="status status-upcoming">Upcoming</span></td>
                     </tr>
                 </tbody>
@@ -102,12 +114,12 @@
         <section id="admin">
             <h2>Administrative Note</h2>
             <div class="alert-box">
-                <strong>Pending:</strong> Reclassification request to the <strong>"Application Track"</strong> is currently under review with the Academic Affairs Office. Project technical development remains completely on schedule.
+                <strong>Track Reclassification:</strong> As decided previously, the project focus has shifted to "Application". The official reclassification request is currently <strong>pending</strong> with the Academic Affairs Office. The team is continuously following up, and project development remains unaffected.
             </div>
         </section>
 
         <footer style="text-align: center; color: #94a3b8; font-size: 0.85rem; margin-top: 50px;">
-            &copy; 2026 Project Team | Speech Recognition Research
+            &copy; 2026 Application of Multi-speaker Dialogue Content Recognition Technology | COMP7705
         </footer>
     </div>
 </body>
